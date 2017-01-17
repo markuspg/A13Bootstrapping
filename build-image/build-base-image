@@ -18,4 +18,6 @@ partprobe "${loDev}"
 mkfs.vfat -n BOOT "${loDev}"p1
 mkfs.ext4 -L ROOT "${loDev}"p2
 
+dd if=bin/u-boot-sunxi-with-spl.bin of="${loDev}" bs=1024 seek=8
+
 losetup -d "${loDev}"
