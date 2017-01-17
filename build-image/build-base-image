@@ -4,6 +4,8 @@ set -e -u -C
 
 OUTP="$(dirname -- "$(dirname -- "$(readlink -f -- "$0")")")"/bin/base.img
 
+rm -f "${OUTP}"
+
 truncate -s2G "${OUTP}"
 loDev="$(losetup --show -f ${OUTP})"
 
