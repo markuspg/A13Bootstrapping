@@ -1,0 +1,19 @@
+#!/bin/sh
+
+set -e -u -C
+
+OUTP="$(dirname -- "$(dirname -- "$(readlink -f -- "$0")")")"/bin/base.img
+
+truncate -s2G "${OUTP}"
+loDev="$(losetup --show -f ${OUTP})"
+
+parted -s "${loDev}" -- mklabel gpt \
+    mkpart BOOT 1M 257M \
+    mkpart ROOT 257M -1M
+
+partprobe "${loDev}"
+
+mkfs.vfat -n BOOT "${loDev}"p1
+mkfs.ext4 -L ROOT "${loDev}"p2
+
+losetup -d "${loDev}"
