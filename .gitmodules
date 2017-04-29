@@ -1,3 +1,6 @@
 [submodule "extlibs/u-boot"]
 	path = extlibs/u-boot
 	url = git://git.denx.de/u-boot.git
+[submodule "extlibs/linux-stable"]
+	path = extlibs/linux-stable
+	url = https://kernel.googlesource.com/pub/scm/linux/kernel/git/stable/linux-stable.git
