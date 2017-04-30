@@ -1,10 +1,12 @@
-BASEDIR := $(basebame CURDIR)
+BASEDIR := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 
 .PHONY: all
 
-all: $(BASEDIR)/bin/u-boot-sunxi-with-spl.bin
+all: $(BASEDIR)/../bin/u-boot-sunxi-with-spl.bin
 
-$(BASEDIR)/bin/u-boot-sunxi-with-spl.bin:
-	$(MAKE) -C u-boot ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- A13-OLinuXino_defconfig
+$(BASEDIR)/u-boot/.config: $(BASEDIR)/u-boot-config
+	cp $< $@
+
+$(BASEDIR)/../bin/u-boot-sunxi-with-spl.bin: $(BASEDIR)/u-boot/.config
 	$(MAKE) -C u-boot ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-
-	cp u-boot/u-boot-sunxi-with-spl.bin $@
+	cp $(BASEDIR)/u-boot/u-boot-sunxi-with-spl.bin $@
