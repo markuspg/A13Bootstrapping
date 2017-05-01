@@ -1,10 +1,14 @@
 #!/bin/sh
 
+CHROOT_DIR=/mnt/chroot
+
 set -e -u -C
 
 OUTP="$(dirname -- "$(dirname -- "$(readlink -f -- "$0")")")"/bin/base.img
 
 rm -f "${OUTP}"
+
+test -d "${CHROOT_DIR}" || mkdir "${CHROOT_DIR}"
 
 truncate -s2G "${OUTP}"
 loDev="$(losetup --show -f ${OUTP})"
@@ -17,6 +21,14 @@ partprobe "${loDev}"
 
 mkfs.vfat -n BOOT "${loDev}"p1
 mkfs.ext4 -L ROOT "${loDev}"p2
+
+mount -t vfat "${loDev}"p1 "${CHROOT_DIR}"
+cp -v bin/zImage "${CHROOT_DIR}/zImage"
+umount "${loDev}"p1
+
+mount -t ext4 "${loDev}"p2 "${CHROOT_DIR}"
+qemu-debootstrap --arch=armhf --variant=minbase stretch "${CHROOT_DIR}" http://ftp.de.debian.org/debian/
+umount "${loDev}"p2
 
 dd if=bin/u-boot-sunxi-with-spl.bin of="${loDev}" bs=1024 seek=8
 
