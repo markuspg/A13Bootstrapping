@@ -21,3 +21,5 @@ $(BASEDIR)/linux-stable/.config: $(BASEDIR)/linux-stable-config
 	cp $< $@
 
 $(BASEDIR)/../bin/zImage: $(BASEDIR)/linux-stable/.config
+	$(MAKE) -C linux-stable ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- zImage
+	cp $(BASEDIR)/linux-stable/arch/arm/boot/zImage $@
