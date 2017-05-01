@@ -13,9 +13,7 @@ test -d "${CHROOT_DIR}" || mkdir "${CHROOT_DIR}"
 truncate -s2G "${OUTP}"
 loDev="$(losetup --show -f ${OUTP})"
 
-parted -s "${loDev}" -- mklabel gpt \
-    mkpart BOOT 1M 257M \
-    mkpart ROOT 257M -1M
+sfdisk "${loDev}" < etc/sd.layout
 
 partprobe "${loDev}"
 

@@ -1,0 +1,7 @@
+label: dos
+label-id: 0x55d590cd
+device: /dev/loop0
+unit: sectors
+
+/dev/loop0p1 : start=        2048, size=      131072, type=83
+/dev/loop0p2 : start=      133120, size=     4061184, type=83
