@@ -21,7 +21,9 @@ mkfs.vfat -n BOOT "${loDev}"p1
 mkfs.ext4 -L ROOT "${loDev}"p2
 
 mount -t vfat "${loDev}"p1 "${CHROOT_DIR}"
-cp -v bin/zImage "${CHROOT_DIR}/zImage"
+cp -v bin/sun5i-a13-olinuxino.dtb "${CHROOT_DIR}/
+cp -v bin/zImage "${CHROOT_DIR}/zimage"
+mkimage -C none -A arm -T script -d etc/boot.cmd "${CHROOT_DIR}/boot.scr
 umount "${loDev}"p1
 
 mount -t ext4 "${loDev}"p2 "${CHROOT_DIR}"
