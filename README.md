@@ -14,4 +14,5 @@ The host operating system used to create the images should be a Debian Stretch i
 * device-tree-compiler
 * git
 * qemu-user-static
+* systemd-container
 * u-boot-tools

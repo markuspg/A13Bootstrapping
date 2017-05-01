@@ -1,0 +1,6 @@
+--- ./etc/apt/sources.list.orig	2017-05-02 00:47:21.000000000 +0200
++++ ./etc/apt/sources.list	2017-05-02 00:47:47.000000000 +0200
+@@ -1 +1,2 @@
+-deb http://deb.debian.org/debian stretch main
++deb http://deb.debian.org/debian stretch main contrib non-free
++deb http://security.debian.org/debian-security stretch/updates main contrib non-free

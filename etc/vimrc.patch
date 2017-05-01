@@ -1,0 +1,47 @@
+--- ./etc/vim/vimrc.orig	2017-05-02 00:46:29.000000000 +0200
++++ ./etc/vim/vimrc	2017-05-02 00:46:47.000000000 +0200
+@@ -14,7 +14,7 @@
+ " any settings in these files.
+ " If you don't want that to happen, uncomment the below line to prevent
+ " defaults.vim from being loaded.
+-" let g:skip_defaults_vim = 1
++let g:skip_defaults_vim = 1
+ 
+ " Uncomment the next line to make Vim more Vi-compatible
+ " NOTE: debian.vim sets 'nocompatible'.  Setting 'compatible' changes numerous
+@@ -23,7 +23,7 @@
+ 
+ " Vim5 and later versions support syntax highlighting. Uncommenting the next
+ " line enables syntax highlighting by default.
+-"syntax on
++syntax on
+ 
+ " If using a dark background within the editing area and syntax highlighting
+ " turn on this option as well
+@@ -37,20 +37,21 @@
+ 
+ " Uncomment the following to have Vim load indentation rules and plugins
+ " according to the detected filetype.
+-"if has("autocmd")
+-"  filetype plugin indent on
+-"endif
++if has("autocmd")
++  filetype plugin indent on
++endif
+ 
+ " The following are commented out as they cause vim to behave a lot
+ " differently from regular Vi. They are highly recommended though.
+ "set showcmd		" Show (partial) command in status line.
+-"set showmatch		" Show matching brackets.
+-"set ignorecase		" Do case insensitive matching
++set showmatch		" Show matching brackets.
++set ignorecase		" Do case insensitive matching
+ "set smartcase		" Do smart case matching
+ "set incsearch		" Incremental search
+ "set autowrite		" Automatically save before commands like :next and :make
+ "set hidden		" Hide buffers when they are abandoned
+ "set mouse=a		" Enable mouse usage (all modes)
++set hlsearch
+ 
+ " Source a global configuration file if available
+ if filereadable("/etc/vim/vimrc.local")
