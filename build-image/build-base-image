@@ -21,13 +21,20 @@ mkfs.vfat -n BOOT "${loDev}"p1
 mkfs.ext4 -L ROOT "${loDev}"p2
 
 mount -t vfat "${loDev}"p1 "${CHROOT_DIR}"
-cp -v bin/sun5i-a13-olinuxino.dtb "${CHROOT_DIR}/
+cp -v bin/sun5i-a13-olinuxino.dtb "${CHROOT_DIR}/"
 cp -v bin/zImage "${CHROOT_DIR}/zimage"
-mkimage -C none -A arm -T script -d etc/boot.cmd "${CHROOT_DIR}/boot.scr
+mkimage -C none -A arm -T script -d etc/boot.cmd "${CHROOT_DIR}/boot.scr"
 umount "${loDev}"p1
 
 mount -t ext4 "${loDev}"p2 "${CHROOT_DIR}"
 qemu-debootstrap --arch=armhf --variant=minbase stretch "${CHROOT_DIR}" http://ftp.de.debian.org/debian/
+patch "${CHROOT_DIR}/etc/apt/sources.list" etc/sources.list.patch
+patch "${CHROOT_DIR}/etc/passwd" etc/passwd.patch
+systemd-nspawn --register=no -D "${CHROOT_DIR}" apt-get update
+systemd-nspawn --register=no -D "${CHROOT_DIR}" apt-get dist-upgrade -y
+systemd-nspawn --register=no -D "${CHROOT_DIR}" apt-get install -y default-dbus-session-bus firmware-linux-nonfree firmware-realtek git systemd vim
+patch "${CHROOT_DIR}/etc/fstab" etc/fstab.patch
+patch "${CHROOT_DIR}/etc/vim/vimrc" etc/vimrc.patch
 umount "${loDev}"p2
 
 dd if=bin/u-boot-sunxi-with-spl.bin of="${loDev}" bs=1024 seek=8

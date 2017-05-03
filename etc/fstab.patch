@@ -1,0 +1,5 @@
+--- ./etc/fstab.orig	2017-05-03 23:35:11.000000000 +0200
++++ ./etc/fstab	2017-05-03 23:37:03.000000000 +0200
+@@ -1 +1 @@
+-# UNCONFIGURED FSTAB FOR BASE SYSTEM
++/dev/mmcblk0p2  /       ext4    defaults 0      0

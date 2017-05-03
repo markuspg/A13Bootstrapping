@@ -1,0 +1,8 @@
+--- ./etc/passwd.orig	2017-05-02 23:26:18.000000000 +0200
++++ ./etc/passwd	2017-05-02 23:26:27.000000000 +0200
+@@ -1,4 +1,4 @@
+-root:x:0:0:root:/root:/bin/bash
++root::0:0:root:/root:/bin/bash
+ daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+ bin:x:2:2:bin:/bin:/usr/sbin/nologin
+ sys:x:3:3:sys:/dev:/usr/sbin/nologin
