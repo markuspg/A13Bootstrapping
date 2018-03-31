@@ -1,8 +1,9 @@
 .PHONY: all
 
-all: build-image/build-base-image
+all: A13
+
+A13: build-image/build-base-image
 	mkdir -p bin
-	make -C extlibs/linux-stable mrproper
-	make -C extlibs/u-boot mrproper
+	git submodule update --recursive
 	make -C extlibs
 	sudo build-image/build-base-image
