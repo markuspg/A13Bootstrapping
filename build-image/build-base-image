@@ -35,6 +35,7 @@ systemd-nspawn --register=no -D "${CHROOT_DIR}" apt-get dist-upgrade -y
 systemd-nspawn --register=no -D "${CHROOT_DIR}" apt-get install -y default-dbus-session-bus firmware-linux-nonfree firmware-realtek git network-manager systemd vim
 patch "${CHROOT_DIR}/etc/fstab" etc/fstab.patch
 patch "${CHROOT_DIR}/etc/vim/vimrc" etc/vimrc.patch
+tar xf bin/kernelModules.tar --no-same-owner -C "${CHROOT_DIR}"
 umount "${loDev}"p2
 
 dd if=bin/u-boot-sunxi-with-spl.bin of="${loDev}" bs=1024 seek=8
