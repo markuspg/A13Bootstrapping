@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This repository hosts scripts and makefiles to bootstrap a Debian Stretch system using current "Das U-Boot" and Linux mainline kernel versions. The main purpose of this repository is to toy around with an OLIMEX A13-OLinuXino-WIFI with connected MOD-ENC28J60 and LCD-OLinuXino-7TS extensions.
+This repository hosts scripts and makefiles to bootstrap a Debian Stretch system using current "Das U-Boot" and Linux mainline kernel versions. The main purpose of this repository is to toy around with an OLIMEX A13-OLinuXino-WIFI.
 
 ## Dependencies
 
@@ -13,6 +13,7 @@ The host operating system used to create the images should be a Debian Stretch i
 * debootstrap
 * device-tree-compiler
 * git
+* libssl-dev
 * python-dev
 * qemu-user-static
 * swig
