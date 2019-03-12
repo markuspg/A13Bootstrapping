@@ -27,7 +27,7 @@ mkimage -C none -A arm -T script -d etc/boot.cmd "${CHROOT_DIR}/boot.scr"
 umount "${loDev}"p1
 
 mount -t ext4 "${loDev}"p2 "${CHROOT_DIR}"
-qemu-debootstrap --arch=armhf --variant=minbase stretch "${CHROOT_DIR}" http://ftp.de.debian.org/debian/
+qemu-debootstrap --arch=armhf --variant=minbase stretch "${CHROOT_DIR}" http://deb.debian.org/debian
 patch "${CHROOT_DIR}/etc/apt/sources.list" etc/sources.list.patch
 patch "${CHROOT_DIR}/etc/passwd" etc/passwd.patch
 systemd-nspawn --register=no -D "${CHROOT_DIR}" apt-get update
