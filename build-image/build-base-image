@@ -32,7 +32,16 @@ patch "${CHROOT_DIR}/etc/apt/sources.list" etc/sources.list.patch
 patch "${CHROOT_DIR}/etc/passwd" etc/passwd.patch
 systemd-nspawn --register=no -D "${CHROOT_DIR}" apt-get update
 systemd-nspawn --register=no -D "${CHROOT_DIR}" apt-get dist-upgrade -y
-systemd-nspawn --register=no -D "${CHROOT_DIR}" apt-get install -y default-dbus-session-bus firmware-linux-nonfree firmware-realtek git network-manager systemd vim
+systemd-nspawn --register=no -D "${CHROOT_DIR}" apt-get install -y \
+  default-dbus-session-bus \
+  firmware-linux-nonfree \
+  firmware-realtek \
+  git \
+  kmod \
+  network-manager \
+  systemd \
+  usbutils \
+  vim
 patch "${CHROOT_DIR}/etc/fstab" etc/fstab.patch
 patch "${CHROOT_DIR}/etc/vim/vimrc" etc/vimrc.patch
 tar xf bin/kernelModules.tar --no-same-owner -C "${CHROOT_DIR}"
